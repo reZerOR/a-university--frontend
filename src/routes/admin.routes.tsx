@@ -1,9 +1,8 @@
 import CreateAdmin from "../pages/Admin/CreateAdmin";
 import CreateStudent from "../pages/Student/CreateStudent";
 import CreateFaculty from "../pages/Faculty/CreateFaculty";
-import { Children, ReactNode } from "react";
+import { ReactNode } from "react";
 import { NavLink, RouteObject } from "react-router-dom";
-import { MenuProps } from "antd";
 type TLink = {
   name: string;
   path?: string;
@@ -12,6 +11,12 @@ type TLink = {
 
 interface TNav extends TLink {
   children?: TLink[];
+}
+
+type TSidebarItems = {
+  key: string,
+  label: ReactNode,
+  children?: TSidebarItems[],
 }
 
 export const adminPaths: TNav[] = [
@@ -61,7 +66,7 @@ export const adminRoutes: RouteObject[] = adminPaths.reduce(
   []
 );
 
-export const adminNav = adminPaths.reduce((acc, item)=>{
+export const adminNav = adminPaths.reduce((acc: TSidebarItems[], item)=>{
     if(item.name && item.path){
         acc.push({
             key: item.name,
