@@ -1,23 +1,9 @@
 import CreateAdmin from "../pages/Admin/CreateAdmin";
 import CreateStudent from "../pages/Student/CreateStudent";
 import CreateFaculty from "../pages/Faculty/CreateFaculty";
-import { ReactNode } from "react";
 import { NavLink} from "react-router-dom";
-type TLink = {
-  name: string;
-  path?: string;
-  element?: ReactNode;
-};
+import { TNav, TSidebarItems } from "../types";
 
-interface TNav extends TLink {
-  children?: TLink[];
-}
-
-type TSidebarItems = {
-  key: string,
-  label: ReactNode,
-  children?: TSidebarItems[],
-}
 
 export const adminPaths: TNav[] = [
   {
