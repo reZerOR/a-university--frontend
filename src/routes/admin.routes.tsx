@@ -2,7 +2,7 @@ import CreateAdmin from "../pages/Admin/CreateAdmin";
 import CreateStudent from "../pages/Student/CreateStudent";
 import CreateFaculty from "../pages/Faculty/CreateFaculty";
 import { ReactNode } from "react";
-import { NavLink, RouteObject } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 type TLink = {
   name: string;
   path?: string;
@@ -46,25 +46,6 @@ export const adminPaths: TNav[] = [
     ],
   },
 ];
-
-export const adminRoutes: RouteObject[] = adminPaths.reduce(
-  (acc: RouteObject[], item: TNav) => {
-    if (item.path && item.element) {
-      acc.push({
-        path: item.path,
-        element: item.element,
-      });
-    }
-
-    if (item.children) {
-      item.children.forEach((child) => {
-        acc.push({ path: child.path as string, element: child.element });
-      });
-    }
-    return acc;
-  },
-  []
-);
 
 export const adminNav = adminPaths.reduce((acc: TSidebarItems[], item)=>{
     if(item.name && item.path){
