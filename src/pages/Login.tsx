@@ -6,9 +6,11 @@ const Login = () => {
   const { register, handleSubmit } = useForm();
 
   const [login, { data, error }] = useLoginMutation();
-
+  console.log(data);
+  console.log(error);
   const onSubmit = (data) => {
     console.log(data);
+    login(data)
   };
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
