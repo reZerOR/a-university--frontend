@@ -1,16 +1,17 @@
-
-import './App.css'
-import MainLayout from './components/layout/MainLayout'
+import "./App.css";
+import MainLayout from "./components/layout/MainLayout";
+import ProtectedRoute from "./components/layout/ProtectedRoute";
 
 function App() {
-
   return (
     <>
-    <div>
-      <MainLayout/>
-    </div>
+      <div>
+        <ProtectedRoute>
+          <MainLayout />
+        </ProtectedRoute>
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
