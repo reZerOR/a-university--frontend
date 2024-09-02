@@ -3,6 +3,8 @@ import Sider from "antd/es/layout/Sider";
 import { sidebarGenerator } from "../../utiles/sidebarGenerator";
 import { adminPaths } from "../../routes/admin.routes";
 import { facultyPaths } from "../../routes/faculty.routes";
+import { useAppSelector } from "../../redux/hooks";
+import { useCurrentUser } from "../../redux/features/auth/authSlice";
 const userRole = {
   ADMIN: "admin",
   FACULTY: "faculty",
@@ -10,9 +12,9 @@ const userRole = {
 };
 
 function Sidebar() {
-  const role = userRole.ADMIN;
+  const user = useAppSelector(useCurrentUser);
   let sidebarItems;
-  switch (role) {
+  switch (user?.role) {
     case userRole.ADMIN:
       sidebarItems = sidebarGenerator(adminPaths, userRole.ADMIN);
       break;
