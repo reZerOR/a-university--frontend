@@ -1,6 +1,8 @@
 import {
   BaseQueryApi,
+  BaseQueryFn,
   createApi,
+  DefinitionType,
   FetchArgs,
   fetchBaseQuery,
 } from "@reduxjs/toolkit/query/react";
@@ -19,11 +21,11 @@ const baseQuery = fetchBaseQuery({
   },
 });
 
-const baseQueryWithRefreshToken = async (
-  args: FetchArgs,
-  api: BaseQueryApi,
-  extraOptions: object
-) => {
+const baseQueryWithRefreshToken: BaseQueryFn<FetchArgs, BaseQueryApi, DefinitionType> = async (
+  args,
+  api,
+  extraOptions
+) : Promise<any> => {
   let result = await baseQuery(args, api, extraOptions);
   if (result?.error?.status === 401) {
     const res = await fetch("http://localhost:5000/api/v1/auth/refresh-token", {
